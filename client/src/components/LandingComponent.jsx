@@ -1,13 +1,26 @@
+/* eslint-disable react/prop-types */
 import "../styles/LandingComponent.css";
 
-function LandingComponent() {
+function LandingComponent({
+  setOnLandingPage,
+  setGameVsPlayer,
+  setGameVsCpu,
+  setGameOnline,
+}) {
   return (
     <div className="landingComponentContainer">
       <h1 className="gameTitle">tic tac toe</h1>
       <div className="buttonContainer">
-        <button>new game (vs player)</button>
-        <button>new game (vs CPU)</button>
-        <button>new game (online)</button>
+        <button
+          onClick={() => {
+            setOnLandingPage(false);
+            setGameVsPlayer(true);
+          }}
+        >
+          new game (vs player)
+        </button>
+        <button onClick={() => setGameVsCpu(true)}>new game (vs CPU)</button>
+        <button onClick={() => setGameOnline(true)}>new game (online)</button>
       </div>
     </div>
   );
