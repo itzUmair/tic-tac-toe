@@ -1,0 +1,82 @@
+.landingComponentContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 6rem;
+}
+
+.gameTitle {
+  font-family: var(--ff-special);
+  color: var(--clr-400);
+  text-transform: capitalize;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.buttonContainer > button {
+  border: none;
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  color: var(--clr-400);
+  font-family: var(--ff-regular);
+  font-weight: bold;
+  text-transform: capitalize;
+  transition: box-shadow 500ms ease;
+}
+
+.buttonContainer > button:nth-child(1) {
+  background-color: var(--clr-510);
+  box-shadow: 0rem -0.5rem 0rem 0rem var(--clr-520) inset;
+}
+
+.buttonContainer > button:nth-child(2) {
+  background-color: var(--clr-610);
+  box-shadow: 0rem -0.5rem 0rem 0rem var(--clr-620) inset;
+}
+
+.buttonContainer > button:nth-child(3) {
+  background-color: var(--clr-210);
+  box-shadow: 0rem -0.5rem 0rem 0rem var(--clr-220) inset;
+}
+
+.buttonContainer > button:nth-child(1):hover {
+  box-shadow: 0rem -4rem 0rem 0rem var(--clr-520) inset;
+}
+.buttonContainer > button:nth-child(2):hover {
+  box-shadow: 0rem -4rem 0rem 0rem var(--clr-620) inset;
+}
+.buttonContainer > button:nth-child(3):hover {
+  box-shadow: 0rem -4rem 0rem 0rem var(--clr-220) inset;
+}
+
+@media (min-width: 1024px) {
+  .gameTitle {
+    font-size: 6rem;
+  }
+  .buttonContainer > button {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gameTitle {
+    font-size: 4rem;
+  }
+  .buttonContainer > button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .gameTitle {
+    font-size: 3rem;
+  }
+  .buttonContainer > button {
+    font-size: 1rem;
+  }
+}
