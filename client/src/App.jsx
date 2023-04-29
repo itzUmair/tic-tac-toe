@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LandingComponent, TurnSelector } from "./components";
+import { LandingComponent, TurnSelector, OfflineGame } from "./components";
 
 function App() {
   const [onLandingPage, setOnLandingPage] = useState(true);
@@ -21,12 +21,14 @@ function App() {
           setGameOnline={setGameOnline}
         />
       )}
-      {gameVsPlayer && (
+      {gameVsPlayer && !offlineGameBegin && (
         <TurnSelector
           player1Mark={player1Mark}
           setPlayer1Mark={setPlayer1Mark}
+          setOfflineGameBegin={setOfflineGameBegin}
         />
       )}
+      {offlineGameBegin && <OfflineGame player1Mark={player1Mark} />}
     </main>
   );
 }

@@ -1,8 +1,8 @@
-function Circle() {
+function Circle({ width }) {
   return (
     <svg
-      width="115"
-      height="115"
+      width={width} //115
+      height={width} //115
       viewBox="0 0 115 115"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

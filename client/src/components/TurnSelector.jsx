@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "../styles/TurnSelector.css";
 
-function TurnSelector({ player1Mark, setPlayer1Mark }) {
+function TurnSelector({ player1Mark, setPlayer1Mark, setOfflineGameBegin }) {
   return (
     <div className="turnSelectorContainer">
       <h1 className="gameTitle secondary">tic tac toe</h1>
@@ -24,7 +24,7 @@ function TurnSelector({ player1Mark, setPlayer1Mark }) {
           </span>
         </div>
         <p className="turnHint">remember: x goes first</p>
-        <button>go!</button>
+        <button onClick={() => setOfflineGameBegin(true)}>go!</button>
       </section>
     </div>
   );
