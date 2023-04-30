@@ -9,6 +9,7 @@ function GameFinish({
   setOnLandingPage,
   setOfflineGameBegin,
   setGameVsPlayer,
+  setWinCondition,
 }) {
   return (
     <>
@@ -33,6 +34,7 @@ function GameFinish({
               setOnLandingPage(true);
               setOfflineGameBegin(false);
               setGameVsPlayer(false);
+              setWinCondition(false);
             }}
           >
             quit
@@ -41,6 +43,7 @@ function GameFinish({
             onClick={() => {
               setGameFinish(false);
               refreshBoard();
+              setWinCondition(false);
             }}
           >
             rematch

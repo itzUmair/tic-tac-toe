@@ -13,6 +13,35 @@
   position: relative;
 }
 
+.winLine {
+  position: absolute;
+  top: 0;
+  width: 0.5rem;
+  height: 100%;
+  background-color: white;
+}
+
+.winLine1,
+.winLine2,
+.winLine3 {
+  left: 0;
+}
+
+.winLine4,
+.winLine5,
+.winLine6 {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+.winLine7 {
+  transform: rotate(-45deg);
+}
+
+.winLine8 {
+  transform: rotate(45deg);
+}
+
 .cell {
   display: flex;
   align-items: center;
@@ -79,7 +108,6 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: 0.5rem;
 }
 
 .scoreContainer > .player p {
@@ -121,14 +149,35 @@
   .scoreContainer {
     width: 75%;
   }
+  .scoreContainer > .player > span {
+    gap: 0.5rem;
+  }
   .scoreContainer > .player > span > svg {
     width: 1rem;
   }
   .scoreContainer > .player > span > p {
     font-size: 0.8rem;
   }
+  .scoreContainer > .player > p {
+    font-size: 0.8rem;
+  }
   .scoreContainer > .drawCount > p {
     font-size: 0.8rem;
+  }
+  .winLine1 {
+    left: 5.9rem;
+  }
+  .winLine2 {
+    left: 12.3rem;
+  }
+  .winLine3 {
+    left: 18.5rem;
+  }
+  .winLine4 {
+    top: 6.3rem;
+  }
+  .winLine6 {
+    top: -6.3rem;
   }
 }
 
@@ -153,6 +202,39 @@
   }
   .logo {
     width: 12%;
+  }
+  .scoreContainer {
+    width: 75%;
+  }
+  .scoreContainer > .player > span {
+    gap: 0.5rem;
+  }
+  .scoreContainer > .player > span > svg {
+    width: 0.8rem;
+  }
+  .scoreContainer > .player > span > p {
+    font-size: 0.7rem;
+  }
+  .scoreContainer > .player > p {
+    font-size: 0.7rem;
+  }
+  .scoreContainer > .drawCount > p {
+    font-size: 0.7rem;
+  }
+  .winLine1 {
+    left: 4.3rem;
+  }
+  .winLine2 {
+    left: 9.8rem;
+  }
+  .winLine3 {
+    left: 15.2rem;
+  }
+  .winLine4 {
+    top: 5.3rem;
+  }
+  .winLine6 {
+    top: -5.5rem;
   }
 }
 
@@ -191,5 +273,38 @@
   }
   .logo {
     width: 15%;
+  }
+  .scoreContainer {
+    width: 85%;
+  }
+  .scoreContainer > .player > span {
+    gap: 0.3rem;
+  }
+  .scoreContainer > .player > span > svg {
+    width: 0.6em;
+  }
+  .scoreContainer > .player > span > p {
+    font-size: 0.6rem;
+  }
+  .scoreContainer > .player > p {
+    font-size: 0.6rem;
+  }
+  .scoreContainer > .drawCount {
+    font-size: 0.7rem;
+  }
+  .winLine1 {
+    left: 2.8rem;
+  }
+  .winLine2 {
+    left: 7.3rem;
+  }
+  .winLine3 {
+    left: 11.7rem;
+  }
+  .winLine4 {
+    top: 4.5rem;
+  }
+  .winLine6 {
+    top: -4.5rem;
   }
 }

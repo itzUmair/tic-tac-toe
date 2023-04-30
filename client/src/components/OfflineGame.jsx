@@ -13,6 +13,7 @@ function OfflineGame({
   setGameVsPlayer,
 }) {
   const [gameFinish, setGameFinish] = useState(false);
+  const [winCondition, setWinCondition] = useState(false);
   let gameScore = offlineGameData;
 
   const [board, setBoard] = useState([
@@ -70,29 +71,37 @@ function OfflineGame({
   const checkGame = () => {
     // horizontal
     if (board[0] === board[1] && board[1] === board[2] && board[0] !== "-") {
+      setWinCondition(6);
       return board[0];
     }
     if (board[3] === board[4] && board[4] === board[5] && board[3] !== "-") {
+      setWinCondition(5);
       return board[3];
     }
     if (board[6] === board[7] && board[7] === board[8] && board[6] !== "-") {
+      setWinCondition(4);
       return board[6];
     }
     // verticle
     if (board[0] === board[3] && board[3] === board[6] && board[0] !== "-") {
+      setWinCondition(1);
       return board[0];
     }
     if (board[1] === board[4] && board[4] === board[7] && board[1] !== "-") {
+      setWinCondition(2);
       return board[1];
     }
     if (board[2] === board[5] && board[5] === board[8] && board[2] !== "-") {
+      setWinCondition(3);
       return board[2];
     }
     // diagonal
     if (board[0] === board[4] && board[4] === board[8] && board[0] !== "-") {
+      setWinCondition(7);
       return board[0];
     }
     if (board[2] === board[4] && board[4] === board[6] && board[2] !== "-") {
+      setWinCondition(8);
       return board[2];
     }
     return 0;
@@ -146,6 +155,14 @@ function OfflineGame({
         </span>
       </div>
       <div className="board">
+        {winCondition === 1 && <span className="winLine winLine1"></span>}
+        {winCondition === 2 && <span className="winLine winLine2"></span>}
+        {winCondition === 3 && <span className="winLine winLine3"></span>}
+        {winCondition === 4 && <span className="winLine winLine4"></span>}
+        {winCondition === 5 && <span className="winLine winLine5"></span>}
+        {winCondition === 6 && <span className="winLine winLine6"></span>}
+        {winCondition === 7 && <span className="winLine winLine7"></span>}
+        {winCondition === 8 && <span className="winLine winLine8"></span>}
         {board.map((cell, key) => (
           <span className="cell" key={key} onClick={() => playMove(key)}>
             {markCell(cell)}
@@ -180,6 +197,7 @@ function OfflineGame({
           setOnLandingPage={setOnLandingPage}
           setOfflineGameBegin={setOfflineGameBegin}
           setGameVsPlayer={setGameVsPlayer}
+          setWinCondition={setWinCondition}
         />
       )}
     </div>
