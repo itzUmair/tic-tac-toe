@@ -11,6 +11,16 @@ function App() {
   const [offlineGameBegin, setOfflineGameBegin] = useState(false);
   const [cpuGameBegin, setCpuGameBegin] = useState(false);
   const [onlineGameBegin, setOnlineGameBegin] = useState(false);
+
+  let offlineGameData = {
+    p1: 0,
+    draw: 0,
+    p2: 0,
+  };
+
+  const setOfflineGameData = (obj) => {
+    offlineGameData = obj;
+  };
   return (
     <main>
       {onLandingPage && (
@@ -28,7 +38,16 @@ function App() {
           setOfflineGameBegin={setOfflineGameBegin}
         />
       )}
-      {offlineGameBegin && <OfflineGame player1Mark={player1Mark} />}
+      {offlineGameBegin && !onLandingPage && (
+        <OfflineGame
+          player1Mark={player1Mark}
+          setOnLandingPage={setOnLandingPage}
+          offlineGameData={offlineGameData}
+          setOfflineGameData={setOfflineGameData}
+          setOfflineGameBegin={setOfflineGameBegin}
+          setGameVsPlayer={setGameVsPlayer}
+        />
+      )}
     </main>
   );
 }

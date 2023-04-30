@@ -4,8 +4,17 @@ import { CrossIcon, CircleIcon, RefreshIcon } from "../assets";
 import { GameFinish } from "./index";
 import "../styles/OfflineGame.css";
 
-function OfflineGame({ player1Mark }) {
+function OfflineGame({
+  player1Mark,
+  setOnLandingPage,
+  offlineGameData,
+  setOfflineGameData,
+  setOfflineGameBegin,
+  setGameVsPlayer,
+}) {
   const [gameFinish, setGameFinish] = useState(false);
+  let gameScore = offlineGameData;
+
   const [board, setBoard] = useState([
     "-",
     "-",
@@ -55,6 +64,7 @@ function OfflineGame({ player1Mark }) {
 
   const refreshBoard = () => {
     setBoard(["-", "-", "-", "-", "-", "-", "-", "-", "-"]);
+    setGameFinish(false);
   };
 
   const checkGame = () => {
@@ -75,7 +85,7 @@ function OfflineGame({ player1Mark }) {
     if (board[1] === board[4] && board[4] === board[7] && board[1] !== "-") {
       return board[1];
     }
-    if (board[2] === board[6] && board[6] === board[8] && board[2] !== "-") {
+    if (board[2] === board[5] && board[5] === board[8] && board[2] !== "-") {
       return board[2];
     }
     // diagonal
@@ -88,19 +98,26 @@ function OfflineGame({ player1Mark }) {
     return 0;
   };
 
-  // TODO game win check
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     const game = checkGame();
-  //     if (game === "x") {
-  //       setGameFinish("x");
-  //     } else if (game === "o") {
-  //       setGameFinish("o");
-  //     }
-  //   }, 500);
-  // }, []);
-
+  useEffect(() => {
+    const game = checkGame();
+    if (game !== 0) {
+      if (game === "x" && player1Mark === "x") {
+        setOfflineGameData({ ...gameScore, p1: gameScore.p1++ });
+      } else if (game === "o" && player1Mark === "o") {
+        setOfflineGameData({ ...gameScore, p1: gameScore.p1++ });
+      } else if (game === "x" && player1Mark === "o") {
+        setOfflineGameData({ ...gameScore, p2: gameScore.p2++ });
+      } else if (game === "o" && player1Mark === "x") {
+        setOfflineGameData({ ...gameScore, p2: gameScore.p2++ });
+      }
+      setGameFinish(game);
+    } else if (game === 0 && turnNumber() === 9) {
+      setOfflineGameData({ ...gameScore, draw: gameScore.draw++ });
+      setGameFinish("draw");
+    }
+  }, [board]);
   const playMove = (cell) => {
+    if (gameFinish) return;
     const newBoard = [...board];
     if (newBoard[cell] === "-") {
       newBoard[cell] = turnNumber() % 2 === 0 ? "x" : "o";
@@ -136,10 +153,35 @@ function OfflineGame({ player1Mark }) {
         ))}
       </div>
       <div className="scoreContainer">
-        <div className="player1">{player1Mark}</div>
-        <div className="matchCount"></div>
-        <div className="player2">{player1Mark === "x" ? "o" : "x"}</div>
+        <div className="player player1">
+          <span>
+            <p>player 1</p>
+            {player1Mark === "x" ? <CrossIcon /> : <CircleIcon />}
+          </span>
+          <p>{gameScore?.p1 || "0"}</p>
+        </div>
+        <div className="drawCount">
+          <p>draws</p>
+          <span>{gameScore?.draw || "0"}</span>
+        </div>
+        <div className="player player2">
+          <span>
+            <p>player 2</p>
+            {player1Mark !== "x" ? <CrossIcon /> : <CircleIcon />}
+          </span>
+          <p>{gameScore?.p2 || "0"}</p>
+        </div>
       </div>
+      {gameFinish && (
+        <GameFinish
+          winner={gameFinish}
+          setGameFinish={setGameFinish}
+          refreshBoard={refreshBoard}
+          setOnLandingPage={setOnLandingPage}
+          setOfflineGameBegin={setOfflineGameBegin}
+          setGameVsPlayer={setGameVsPlayer}
+        />
+      )}
     </div>
   );
 }

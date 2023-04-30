@@ -26,6 +26,7 @@
   padding: 0;
   box-sizing: border-box;
   font: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
