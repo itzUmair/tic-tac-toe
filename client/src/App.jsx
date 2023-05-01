@@ -36,9 +36,10 @@ function App() {
           player1Mark={player1Mark}
           setPlayer1Mark={setPlayer1Mark}
           setOfflineGameBegin={setOfflineGameBegin}
+          gameMode="offline"
         />
       )}
-      {offlineGameBegin && !onLandingPage && (
+      {offlineGameBegin && !onLandingPage && !gameVsCpu && (
         <OfflineGame
           player1Mark={player1Mark}
           setOnLandingPage={setOnLandingPage}
@@ -46,6 +47,28 @@ function App() {
           setOfflineGameData={setOfflineGameData}
           setOfflineGameBegin={setOfflineGameBegin}
           setGameVsPlayer={setGameVsPlayer}
+          gameMode="offline"
+          setGameVsCpu={setGameVsCpu}
+        />
+      )}
+      {gameVsCpu && !offlineGameBegin && (
+        <TurnSelector
+          player1Mark={player1Mark}
+          setPlayer1Mark={setPlayer1Mark}
+          setOfflineGameBegin={setOfflineGameBegin}
+          gameMode="ai"
+        />
+      )}
+      {offlineGameBegin && !onLandingPage && !gameVsPlayer && (
+        <OfflineGame
+          player1Mark={player1Mark}
+          setOnLandingPage={setOnLandingPage}
+          offlineGameData={offlineGameData}
+          setOfflineGameData={setOfflineGameData}
+          setOfflineGameBegin={setOfflineGameBegin}
+          setGameVsPlayer={setGameVsPlayer}
+          gameMode="ai"
+          setGameVsCpu={setGameVsCpu}
         />
       )}
     </main>

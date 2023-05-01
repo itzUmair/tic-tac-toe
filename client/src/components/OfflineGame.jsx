@@ -11,9 +11,12 @@ function OfflineGame({
   setOfflineGameData,
   setOfflineGameBegin,
   setGameVsPlayer,
+  gameMode,
+  setGameVsCpu,
 }) {
   const [gameFinish, setGameFinish] = useState(false);
   const [winCondition, setWinCondition] = useState(false);
+  let aiTurn;
   let gameScore = offlineGameData;
 
   const [board, setBoard] = useState([
@@ -32,6 +35,24 @@ function OfflineGame({
     let turn = 0;
     board.forEach((cell) => cell !== "-" && turn++);
     return turn;
+  };
+
+  const turnDecider = () => {
+    if (player1Mark === "o" && turnNumber() % 2 === 0) {
+      aiTurn = true;
+    } else if (player1Mark === "x" && turnNumber() % 2 !== 0) {
+      aiTurn = true;
+    } else {
+      aiTurn = false;
+    }
+  };
+
+  const aiMove = () => {
+    const availableMoves = board.map((cell, cellno) => {
+      if (cell === "-") return cellno;
+    });
+    const move = availableMoves.filter((move) => move !== undefined);
+    return move[Math.floor(Math.random() * 9)];
   };
 
   const playerMarkRatio = {
@@ -107,7 +128,15 @@ function OfflineGame({
     return 0;
   };
 
+  const playAiMove = () => {
+    const newBoard = [...board];
+    newBoard[aiMove()] = turnNumber() % 2 === 0 ? "x" : "o";
+    setBoard(newBoard);
+    return;
+  };
+
   useEffect(() => {
+    turnDecider();
     const game = checkGame();
     if (game !== 0) {
       if (game === "x" && player1Mark === "x") {
@@ -124,10 +153,14 @@ function OfflineGame({
       setOfflineGameData({ ...gameScore, draw: gameScore.draw++ });
       setGameFinish("draw");
     }
+    if (gameMode === "ai" && aiTurn && turnNumber() < 9 && !gameFinish) {
+      playAiMove();
+    }
   }, [board]);
+
   const playMove = (cell) => {
-    if (gameFinish) return;
     const newBoard = [...board];
+    if (gameFinish) return;
     if (newBoard[cell] === "-") {
       newBoard[cell] = turnNumber() % 2 === 0 ? "x" : "o";
       setBoard(newBoard);
@@ -197,6 +230,7 @@ function OfflineGame({
           setOnLandingPage={setOnLandingPage}
           setOfflineGameBegin={setOfflineGameBegin}
           setGameVsPlayer={setGameVsPlayer}
+          setGameVsCpu={setGameVsCpu}
           setWinCondition={setWinCondition}
         />
       )}

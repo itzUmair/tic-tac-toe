@@ -1,12 +1,21 @@
 /* eslint-disable react/prop-types */
 import "../styles/TurnSelector.css";
 
-function TurnSelector({ player1Mark, setPlayer1Mark, setOfflineGameBegin }) {
+function TurnSelector({
+  player1Mark,
+  setPlayer1Mark,
+  setOfflineGameBegin,
+  gameMode,
+}) {
   return (
     <div className="turnSelectorContainer">
       <h1 className="gameTitle secondary">tic tac toe</h1>
       <section className="turnOptionContainer">
-        <h2>pick player 1&apos;s mark</h2>
+        {gameMode === "ai" ? (
+          <h2>pick your mark</h2>
+        ) : (
+          <h2>pick player 1&apos;s mark</h2>
+        )}
         <div className="turnOptions">
           <span
             className={player1Mark === "x" ? "option active" : "option"}

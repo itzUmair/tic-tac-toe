@@ -19,7 +19,14 @@ function LandingComponent({
         >
           new game (vs player)
         </button>
-        <button onClick={() => setGameVsCpu(true)}>new game (vs CPU)</button>
+        <button
+          onClick={() => {
+            setOnLandingPage(false);
+            setGameVsCpu(true);
+          }}
+        >
+          new game (vs CPU)
+        </button>
         <button onClick={() => setGameOnline(true)}>new game (online)</button>
       </div>
     </div>

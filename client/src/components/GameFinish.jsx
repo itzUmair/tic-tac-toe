@@ -9,6 +9,7 @@ function GameFinish({
   setOnLandingPage,
   setOfflineGameBegin,
   setGameVsPlayer,
+  setGameVsCpu,
   setWinCondition,
 }) {
   return (
@@ -35,6 +36,7 @@ function GameFinish({
               setOfflineGameBegin(false);
               setGameVsPlayer(false);
               setWinCondition(false);
+              setGameVsCpu(false);
             }}
           >
             quit
