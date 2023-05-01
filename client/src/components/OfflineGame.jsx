@@ -153,7 +153,7 @@ function OfflineGame({
       setOfflineGameData({ ...gameScore, draw: gameScore.draw++ });
       setGameFinish("draw");
     }
-    if (gameMode === "ai" && aiTurn && turnNumber() < 9 && !gameFinish) {
+    if (gameMode === "ai" && aiTurn && turnNumber() < 9 && game === 0) {
       playAiMove();
     }
   }, [board]);
@@ -205,7 +205,7 @@ function OfflineGame({
       <div className="scoreContainer">
         <div className="player player1">
           <span>
-            <p>player 1</p>
+            {gameMode === "ai" ? <p>You</p> : <p>player 1</p>}
             {player1Mark === "x" ? <CrossIcon /> : <CircleIcon />}
           </span>
           <p>{gameScore?.p1 || "0"}</p>
@@ -216,7 +216,7 @@ function OfflineGame({
         </div>
         <div className="player player2">
           <span>
-            <p>player 2</p>
+            {gameMode === "ai" ? <p>CPU</p> : <p>player 2</p>}
             {player1Mark !== "x" ? <CrossIcon /> : <CircleIcon />}
           </span>
           <p>{gameScore?.p2 || "0"}</p>
