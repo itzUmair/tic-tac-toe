@@ -41,3 +41,9 @@ main {
   display: flex;
   justify-content: center;
 }
+
+@media (max-width: 767px) {
+  main {
+    align-items: center;
+  }
+}
