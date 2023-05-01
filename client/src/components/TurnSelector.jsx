@@ -6,6 +6,8 @@ function TurnSelector({
   setPlayer1Mark,
   setOfflineGameBegin,
   gameMode,
+  smartAi,
+  setSmartAi,
 }) {
   return (
     <div className="turnSelectorContainer">
@@ -33,6 +35,27 @@ function TurnSelector({
           </span>
         </div>
         <p className="turnHint">remember: x goes first</p>
+        {false && gameMode === "ai" && (
+          <div className="aiOptionContainer">
+            <h2>select ai mode</h2>
+            <div className="aiOptions">
+              <span
+                className={smartAi ? "option" : "option active"}
+                onClick={() => setSmartAi(false)}
+                tabIndex="0"
+              >
+                regular
+              </span>
+              <span
+                className={smartAi ? "option active" : "option"}
+                onClick={() => setSmartAi(true)}
+                tabIndex="0"
+              >
+                impossible
+              </span>
+            </div>
+          </div>
+        )}
         <button onClick={() => setOfflineGameBegin(true)}>go!</button>
       </section>
     </div>

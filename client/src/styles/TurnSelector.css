@@ -68,6 +68,33 @@
   color: var(--clr-410);
 }
 
+.aiOptionContainer {
+  border-top: 0.1rem solid var(--clr-410);
+}
+
+.aiOptionContainer > h2 {
+  font-weight: bold;
+}
+
+.aiOptionContainer > .aiOptions {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+  background-color: var(--clr-100);
+  border-radius: 0.6rem;
+}
+
+.aiOptionContainer > .aiOptions > .option {
+  font-weight: bold;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.aiOptionContainer > .aiOptions > .option.active {
+  background-color: var(--clr-610);
+}
+
 @media (min-width: 1024px) {
   .turnSelectorContainer > .turnOptionContainer > .turnOptions {
     width: 20rem;
@@ -83,6 +110,19 @@
   }
   .turnSelectorContainer > .turnOptionContainer > .turnHint {
     font-size: 0.8rem;
+  }
+  .aiOptionContainer > h2 {
+    font-size: 1.25rem;
+    padding-block: 1rem;
+  }
+  .aiOptionContainer > .aiOptions {
+    width: 20rem;
+  }
+  .aiOptionContainer > .aiOptions > .option {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-radius: 0.4rem;
+    font-size: 1rem;
   }
 }
 
@@ -102,6 +142,19 @@
   .turnSelectorContainer > .turnOptionContainer > h2 {
     font-size: 1rem;
   }
+  .aiOptionContainer > h2 {
+    font-size: 1rem;
+    padding-block: 0.8rem;
+  }
+  .aiOptionContainer > .aiOptions {
+    width: 18rem;
+  }
+  .aiOptionContainer > .aiOptions > .option {
+    padding-inline: 0.8rem;
+    padding-block: 0.5rem;
+    border-radius: 0.4rem;
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 767px) {
@@ -119,5 +172,18 @@
   }
   .turnSelectorContainer > .turnOptionContainer > h2 {
     font-size: 0.8rem;
+  }
+  .aiOptionContainer > h2 {
+    font-size: 0.8rem;
+    padding-block: 0.5rem;
+  }
+  .aiOptionContainer > .aiOptions {
+    width: 15rem;
+  }
+  .aiOptionContainer > .aiOptions > .option {
+    padding-inline: 0.5rem;
+    padding-block: 0.5rem;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
   }
 }

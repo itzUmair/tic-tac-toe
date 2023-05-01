@@ -13,12 +13,15 @@ function OfflineGame({
   setGameVsPlayer,
   gameMode,
   setGameVsCpu,
+  smartAi,
 }) {
   const [gameFinish, setGameFinish] = useState(false);
   const [winCondition, setWinCondition] = useState(false);
-  let aiTurn;
-  let gameScore = offlineGameData;
 
+  let aiTurn;
+  let aiPlayer = player1Mark === "x" ? "o" : "x";
+  let gameScore = offlineGameData;
+  console.log(smartAi);
   const [board, setBoard] = useState([
     "-",
     "-",
@@ -127,9 +130,70 @@ function OfflineGame({
     }
     return 0;
   };
+  const minimax = (board, depth, isMaximizing) => {
+    console.log(board);
+    if (gameFinish) {
+      if (gameFinish === "draw") {
+        return 0;
+      } else if (gameFinish === player1Mark) {
+        return -1;
+      } else {
+        return 1;
+      }
+    } else {
+      if (isMaximizing) {
+        let bestScore = -1000;
+        for (let i = 0; i < 9; i++) {
+          if (board[i] === "-") {
+            board[i] = aiPlayer;
+            let score = minimax(board, depth + 1, !isMaximizing);
+            board[i] === "-";
+            bestScore = Math.max(score, bestScore);
+          }
+        }
+        return bestScore;
+      } else {
+        let bestScore = 1000;
+        for (let i = 0; i < 9; i++) {
+          if (board[i] === "-") {
+            board[i] = player1Mark;
+            let score = minimax(board, depth + 1, !isMaximizing);
+            board[i] === "-";
+            bestScore = Math.min(score, bestScore);
+          }
+        }
+        return bestScore;
+      }
+    }
+  };
+
+  const bestMove = () => {
+    let newBoard = [...board];
+    let bestScore = -1000;
+    let move;
+    let isMaximizing = player1Mark === "x" ? false : true;
+    for (let i = 0; i < 9; i++) {
+      if (board[i] === "-") {
+        newBoard[i] = aiPlayer;
+        let score = minimax(newBoard, 0, isMaximizing);
+        newBoard[i] = "-";
+        if (score > bestScore) {
+          bestScore = score;
+          move = i;
+        }
+      }
+    }
+    return move;
+  };
 
   const playAiMove = () => {
     const newBoard = [...board];
+    if (smartAi) {
+      let move = bestMove();
+      newBoard[move] = turnNumber() % 2 === 0 ? "x" : "o";
+      setBoard(newBoard);
+      return;
+    }
     newBoard[aiMove()] = turnNumber() % 2 === 0 ? "x" : "o";
     setBoard(newBoard);
     return;

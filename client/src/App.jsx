@@ -12,6 +12,8 @@ function App() {
   const [cpuGameBegin, setCpuGameBegin] = useState(false);
   const [onlineGameBegin, setOnlineGameBegin] = useState(false);
 
+  const [smartAi, setSmartAi] = useState(false);
+
   let offlineGameData = {
     p1: 0,
     draw: 0,
@@ -37,6 +39,8 @@ function App() {
           setPlayer1Mark={setPlayer1Mark}
           setOfflineGameBegin={setOfflineGameBegin}
           gameMode="offline"
+          smartAi={smartAi}
+          setSmartAi={setSmartAi}
         />
       )}
       {offlineGameBegin && !onLandingPage && !gameVsCpu && (
@@ -49,6 +53,7 @@ function App() {
           setGameVsPlayer={setGameVsPlayer}
           gameMode="offline"
           setGameVsCpu={setGameVsCpu}
+          smartAi={smartAi}
         />
       )}
       {gameVsCpu && !offlineGameBegin && (
@@ -57,6 +62,8 @@ function App() {
           setPlayer1Mark={setPlayer1Mark}
           setOfflineGameBegin={setOfflineGameBegin}
           gameMode="ai"
+          smartAi={smartAi}
+          setSmartAi={setSmartAi}
         />
       )}
       {offlineGameBegin && !onLandingPage && !gameVsPlayer && (
@@ -69,6 +76,7 @@ function App() {
           setGameVsPlayer={setGameVsPlayer}
           gameMode="ai"
           setGameVsCpu={setGameVsCpu}
+          smartAi={smartAi}
         />
       )}
     </main>
