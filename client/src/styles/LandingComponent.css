@@ -84,6 +84,7 @@
 @media (max-width: 767px) {
   .gameTitle {
     font-size: 3rem;
+    padding-bottom: 3rem;
   }
   .buttonContainer > button {
     font-size: 1rem;
