@@ -5,13 +5,9 @@ function App() {
   const [onLandingPage, setOnLandingPage] = useState(true);
   const [gameVsPlayer, setGameVsPlayer] = useState(false);
   const [gameVsCpu, setGameVsCpu] = useState(false);
-  const [gameOnline, setGameOnline] = useState(false);
 
   const [player1Mark, setPlayer1Mark] = useState("x");
   const [offlineGameBegin, setOfflineGameBegin] = useState(false);
-  const [cpuGameBegin, setCpuGameBegin] = useState(false);
-  const [onlineGameBegin, setOnlineGameBegin] = useState(false);
-
   const [smartAi, setSmartAi] = useState(false);
 
   let offlineGameData = {
@@ -30,7 +26,6 @@ function App() {
           setOnLandingPage={setOnLandingPage}
           setGameVsPlayer={setGameVsPlayer}
           setGameVsCpu={setGameVsCpu}
-          setGameOnline={setGameOnline}
         />
       )}
       {gameVsPlayer && !offlineGameBegin && (

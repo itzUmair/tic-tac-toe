@@ -41,24 +41,3 @@
 .gameFinish > .buttonContainer > button {
   padding-block: 0.8rem;
 }
-
-/* .gameFinish > button {
-  border: none;
-  padding-inline: 1rem;
-  padding-block: 1rem;
-  border-radius: 0.8rem;
-  cursor: pointer;
-  color: var(--clr-400);
-  font-family: var(--ff-regular);
-  font-weight: bold;
-  text-transform: capitalize;
-  transition: box-shadow 500ms ease;
-}
-
-.gameFinish > button:nth-child(3) {
-  background-color: var(--clr-410);
-}
-
-.gameFinish > button:nth-child(2) {
-  background-color: var(--clr-610);
-} */

@@ -1,12 +1,7 @@
 /* eslint-disable react/prop-types */
 import "../styles/LandingComponent.css";
 
-function LandingComponent({
-  setOnLandingPage,
-  setGameVsPlayer,
-  setGameVsCpu,
-  setGameOnline,
-}) {
+function LandingComponent({ setOnLandingPage, setGameVsPlayer, setGameVsCpu }) {
   return (
     <div className="landingComponentContainer">
       <h1 className="gameTitle">tic tac toe</h1>
@@ -27,7 +22,6 @@ function LandingComponent({
         >
           new game (vs CPU)
         </button>
-        <button onClick={() => setGameOnline(true)}>new game (online)</button>
       </div>
     </div>
   );
